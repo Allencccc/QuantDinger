@@ -375,8 +375,6 @@ paths:
 
         code: str (verification code)
 
-        turnstile_token: str (optional)
-
         referral_code: str (optional, referrer''s user ID - only for new users)
 
 
@@ -440,8 +438,6 @@ paths:
 
         password: str
 
-        turnstile_token: str (optional)
-
         referral_code: str (optional, referrer''s user ID)'
       tags:
       - Auth
@@ -469,9 +465,7 @@ paths:
 
         code: str (verification code)
 
-        new_password: str
-
-        turnstile_token: str (optional)'
+        new_password: str'
       tags:
       - Auth
       operationId: postApiAuthResetPassword
@@ -2957,6 +2951,73 @@ paths:
       - Strategy
       operationId: deleteApiStrategiesScriptSourcesDelete
       summary: Delete Api Strategies Script Sources Delete
+      x-visibility: internal
+  /api/strategies/script-sources/versions:
+    get:
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HumanErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HumanSuccessEnvelope'
+      tags:
+      - Strategy
+      operationId: getApiStrategiesScriptSourcesVersions
+      summary: Get Api Strategies Script Sources Versions
+      x-visibility: internal
+  /api/strategies/script-sources/versions/{version_id}:
+    get:
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HumanErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HumanSuccessEnvelope'
+      tags:
+      - Strategy
+      operationId: getApiStrategiesScriptSourcesVersionsVersionId
+      summary: Get Api Strategies Script Sources Versions Version Id
+      x-visibility: internal
+    parameters:
+    - in: path
+      name: version_id
+      required: true
+      schema:
+        type: integer
+        minimum: 0
+  /api/strategies/script-sources/versions/restore:
+    post:
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HumanErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HumanSuccessEnvelope'
+      tags:
+      - Strategy
+      operationId: postApiStrategiesScriptSourcesVersionsRestore
+      summary: Post Api Strategies Script Sources Versions Restore
       x-visibility: internal
   /api/strategies/script-sources/publish:
     post:
